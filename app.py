@@ -14,10 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose' # JWT is json web token
 api = Api(app) # allows us to add resources to the API
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity) # creates /auth endpoint, send username and password
 
 api.add_resource(Store, '/store/<string:name>')
